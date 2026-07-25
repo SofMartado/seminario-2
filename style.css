@@ -1,0 +1,880 @@
+/* ==========================================================================
+   RED DE RECUPERADORES DE BERAZATEGUI - SISTEMA DE DISEÑO & ESTILOS BEM
+   ========================================================================== */
+
+/* 1. TOKENS Y VARIABLES DE DISEÑO (Requeridas en el prompt) */
+:root {
+  /* Paleta de Colores Especificada */
+  --color-primario: #F7E7CE;      /* Fondo base pastel/crema */
+  --color-secundario: #D27D2D;    /* Botones principales (Naranja) y footer */
+  --color-terciario: #83C880;     /* Fondo de sección carrusel, header y destacada (Verde Claro) */
+  --color-acento: #3F8C2C;        /* Llamados a la acción CTA (Verde Oscuro) */
+  --color-texto: #1a1a18;         /* Texto principal casi negro */
+  --color-borde: #e8e8e8;         /* Bordes suaves */
+
+  /* Variaciones Auxiliares */
+  --color-terciario-suave: #d9f2d7;
+  --color-blanco: #ffffff;
+  --color-gris-caja: #e3e3e0;
+  --color-sombra: rgba(26, 26, 24, 0.08);
+  --color-sombra-elevada: rgba(26, 26, 24, 0.16);
+
+  /* Tipografía (Google Fonts - Inter) */
+  --fuente-familia: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --tipo-base: 1rem;              /* 16px */
+  --tipo-pequeño: 0.875rem;       /* 14px */
+  --tipo-grande: 1.25rem;         /* 20px */
+  --tipo-display: 1.75rem;        /* 28px desktop / 1.5rem mobile */
+
+  /* Espaciado */
+  --espacio-xs: 0.5rem;           /* 8px */
+  --espacio-sm: 1rem;             /* 16px */
+  --espacio-md: 1.5rem;           /* 24px */
+  --espacio-lg: 2rem;             /* 32px */
+  --espacio-xl: 3rem;             /* 48px */
+
+  /* Bordes y Transiciones */
+  --radio-borde-sm: 8px;
+  --radio-borde-md: 16px;
+  --radio-borde-lg: 24px;
+  --transicion-suave: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 2. RESET Y ESTILOS BASE */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: var(--fuente-familia);
+  font-size: 16px;
+  scroll-behavior: smooth;
+  color: var(--color-texto);
+  background-color: var(--color-primario);
+  line-height: 1.6;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Contenedor Grilla 6 Columnas (Concepto de Grilla Solicitado) */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--espacio-md);
+  padding-right: var(--espacio-md);
+}
+
+/* Encabezados de Sección */
+.section-title {
+  font-size: var(--tipo-display);
+  font-weight: 800;
+  color: var(--color-texto);
+  line-height: 1.2;
+  margin-bottom: var(--espacio-xs);
+}
+
+.section-subtitle {
+  font-size: var(--tipo-grande);
+  color: #3d3d3a;
+  font-weight: 600;
+  margin-bottom: var(--espacio-md);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--espacio-lg);
+}
+
+/* BOTONES (Con variantes de BEM) */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espacio-xs);
+  padding: var(--espacio-sm) var(--espacio-md);
+  font-size: var(--tipo-base);
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 20px; /* Redondeados según alambre del wireframe */
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: var(--transicion-suave);
+  text-align: center;
+}
+
+/* Botón Naranja (#D27D2D) como los del Wireframe */
+.button--secondary {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+  border-radius: 12px;
+  padding: 10px 24px;
+}
+
+.button--secondary:hover {
+  background-color: var(--color-secundario);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--color-sombra);
+}
+
+/* Botón Verde CTA (#3F8C2C) centrado */
+.button--accent {
+  background-color: var(--color-acento);
+  color: var(--color-blanco);
+  font-size: var(--tipo-grande);
+  padding: 12px var(--espacio-lg);
+  border-radius: 8px;
+  font-weight: 800;
+}
+
+.button--accent:hover {
+  background-color: var(--color-acento);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px var(--color-sombra-elevada);
+}
+
+/* ==========================================================================
+   HEADER (Organismo)
+   Fondo Verde (#83C880) | Logo Círculo + Botones Naranjas + Buscador
+   ========================================================================== */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--color-terciario); /* Verde claro del wireframe */
+  box-shadow: 0 2px 10px var(--color-sombra);
+  padding: var(--espacio-sm) 0;
+  border-bottom: 2px solid var(--color-borde);
+}
+
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espacio-md);
+}
+
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-xs);
+  text-decoration: none;
+  color: var(--color-texto);
+}
+
+/* Círculo oscuro para la marca según alambre del wireframe */
+.header__logo-icon {
+  width: 44px;
+  height: 44px;
+  background-color: #4a4a46; /* Gris/Negro círculo del wireframe */
+  color: var(--color-blanco);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  font-size: 1.4rem;
+}
+
+.header__brand-text-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header__title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: #0f360c;
+}
+
+.header__subtitle {
+  font-size: var(--tipo-pequeño);
+  font-weight: 600;
+  color: #1e5219;
+}
+
+.header__nav {
+  display: flex;
+  align-items: center;
+}
+
+.header__nav-list {
+  display: flex;
+  list-style: none;
+  gap: var(--espacio-xs);
+}
+
+/* Navegación como píldoras naranjas (#D27D2D) según Wireframe */
+.header__nav-link {
+  text-decoration: none;
+  background-color: var(--color-secundario); /* Botón Naranja */
+  color: var(--color-blanco);
+  font-weight: 700;
+  font-size: var(--tipo-pequeño);
+  padding: 8px 18px;
+  border-radius: 20px;
+  transition: var(--transicion-suave);
+  display: inline-block;
+}
+
+.header__nav-link:hover,
+.header__nav-link--active {
+  background-color: var(--color-secundario);
+  transform: translateY(-1px);
+}
+
+/* Buscador (Botón circular Naranja en Header) */
+.header__search {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-blanco);
+  border: 1px solid var(--color-borde);
+  border-radius: 30px;
+  padding: 4px 4px 4px var(--espacio-sm);
+}
+
+.header__search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--tipo-pequeño);
+  font-family: inherit;
+  width: 140px;
+  color: var(--color-texto);
+}
+
+.header__search-button {
+  background: var(--color-secundario); /* Naranja */
+  border: none;
+  color: var(--color-blanco);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transicion-suave);
+}
+
+.header__search-button:hover {
+  background: var(--color-acento);
+}
+
+/* ==========================================================================
+   HERO SECTION (Organismo - Video Informativo)
+   Fondo Crema/Pastel (--color-primario #F7E7CE)
+   ========================================================================== */
+/* Estilos principales de la sección Hero */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; /* Ocupa el 100% del alto de la pantalla */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: var(--color-blanco); /* Texto en blanco para hacer contraste */
+}
+
+/* Contenedor del video ocupando todo el hero */
+.hero__video-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Queda al fondo */
+}
+
+/* El video se adapta para cubrir todo el espacio sin deformarse */
+.hero__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Capa de oscurecimiento (Overlay) para que el texto sea legible */
+.hero__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55); /* Oscurece el video un 55% */
+  z-index: 2;
+}
+
+/* El contenido (texto, insignias, botones) va sobre el video */
+.hero .container {
+  position: relative;
+  z-index: 3; /* Por encima de la capa y del video */
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem 1rem;
+}
+
+.hero__content {
+  max-width: 750px; /* Ancho máximo para mantener buena lectura */
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.hero__badge {
+  display: inline-block;
+  background-color: var(--color-acento); /* Verde reciclaje o tu color de marca */
+  color: var(--color-blanco);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  align-self: flex-start;
+}
+
+.hero__title {
+  font-size: clamp(2rem, 4vw, 3.2rem); /* Tamaño adaptable */
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.hero__description {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-blanco);
+}
+
+/* Botón flotante para pausar/reproducir o activar audio */
+.hero__video-play-btn {
+  background: var(--color-acento);
+  border: 2px solid var(--color-blanco);
+  color: var(--color-blanco);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.hero__video-play-btn:hover {
+  background: var(--color-blanco);
+  color: var(--color-texto);
+  transform: scale(1.08);
+}
+/* ==========================================================================
+   CTA CENTRADO (Debajo del Hero)
+   Fondo Crema | Botón Verde CTA centrado (#3F8C2C)
+   ========================================================================== */
+.cta-section {
+  padding: var(--espacio-lg) 0;
+  background-color: var(--color-primario);
+  text-align: center;
+}
+
+.cta-box {
+  background-color: var(--color-primario);
+  padding: var(--espacio-md);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-box__text {
+  font-size: var(--tipo-grande);
+  font-weight: 700;
+  margin-bottom: var(--espacio-sm);
+  color: var(--color-texto);
+}
+
+.cta-box__actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   CARRUSEL DE RUTAS
+   Fondo Verde (#83C880) | Botón lateral izquierdo + 3 tarjetas horizontales
+   ========================================================================== */
+/* ==========================================================================
+   CARRUSEL DE RUTAS
+   Fondo Verde (#83C880) | 2 Flechas + Desplazamiento por Ventana
+   ========================================================================== */
+.carousel-section {
+  background-color: var(--color-terciario);
+  padding: var(--espacio-xl) 0;
+}
+
+.carousel__wrapper-with-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--espacio-sm);
+  position: relative;
+}
+
+/* Botones de Flechas */
+.carousel__side-btn {
+  background-color: var(--color-blanco);
+  border: 2px solid var(--color-borde);
+  color: #555;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px var(--color-sombra);
+  flex-shrink: 0;
+  transition: var(--transicion-suave);
+  font-size: 1.1rem;
+  font-weight: bold;
+  z-index: 5;
+}
+
+.carousel__side-btn:hover {
+  background-color: var(--color-secundario);
+  color: var(--color-blanco);
+  border-color: var(--color-secundario);
+}
+
+/* MARCO QUE RECORTA LO QUE SALE DEL CARRUSEL */
+.carousel__track {
+  display: flex;
+  gap: var(--espacio-md);
+  transition: transform 0.5s ease;
+  width: max-content;
+}
+
+.carousel__item {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  flex: 0 0 350px;
+  width: 350px;
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-borde-sm);
+  padding: var(--espacio-md);
+  box-shadow: 0 4px 10px var(--color-borde);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  border: 1px solid var(--color-borde);
+}
+
+.carousel__item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(135deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.2) 100%), var(--carousel-bg, none);
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  z-index: 0;
+}
+
+.carousel__item > * {
+  position: relative;
+  z-index: 1;
+}
+
+.carousel__item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--espacio-xs);
+}
+
+.carousel__item-tag {
+  background-color: var(--color-blanco);
+  color: var(--color-secundario);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.carousel__item-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--color-terciario);
+  margin-bottom: var(--espacio-xs);
+}
+
+.carousel__item-text {
+  font-size: var(--tipo-pequeño);
+  color: var(--color-primario);
+  margin-bottom: var(--espacio-sm);
+  flex-grow: 1;
+}
+
+.carousel__item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--color-primario);
+  padding-top: var(--espacio-xs);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--color-primario);
+}
+
+.carousel__controls {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--espacio-md);
+}
+
+.carousel__dots {
+  display: flex;
+  gap: var(--espacio-xs);
+}
+
+.carousel__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-blanco);
+  cursor: pointer;
+}
+
+.carousel__dot--active {
+  background-color: var(--color-acento);
+  width: 24px;
+  border-radius: 12px;
+}
+.carousel__track-wrapper {
+  overflow: hidden;
+  width: calc((350px * 3) + (24px * 2));
+  margin: 0 auto;
+}
+.carousel__track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  transition: transform 0.5s ease;
+}
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 768px) {
+  .carousel__item {
+    flex: 0 0 100%; /* Muestra 1 tarjeta a la vez en móviles */
+  }
+}
+/* ==========================================================================
+   GRILLA DE TARJETAS (2 bloques por fila, 4 tarjetas en total en grid 2x2)
+   Fondo: --color-primario (#F7E7CE) | Botón Naranja (#D27D2D) centrado al pie
+   ========================================================================== */
+.info-grid-section {
+  padding: var(--espacio-xl) 0;
+  background-color: var(--color-primario);
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 bloques por fila */
+  gap: var(--espacio-lg);
+}
+
+.info-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background-color: var(--color-blanco);
+  border-radius: var(--radio-borde-sm);
+  padding: var(--espacio-lg);
+  box-shadow: 0 4px 12px var(--color-blanco);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-between;
+  min-height: 260px;
+}
+
+.info-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(135deg, var(--color-texto) 0%, rgba(0, 0, 0, 0.2) 100%), var(--info-card-bg, none);
+  background-size: cover;
+  background-position: center;
+  opacity: 1;
+  z-index: 0;
+}
+
+.info-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.info-card__icon {
+  font-size: 2rem;
+  margin-bottom: var(--espacio-xs);
+}
+
+.info-card__title {
+  font-size: var(--tipo-grande);
+  font-weight: 800;
+  color: var(--color-terciario);
+  margin-bottom: var(--espacio-xs);
+}
+
+.info-card__description {
+  font-size: var(--tipo-base);
+  color: var(--color-primario);
+  margin-bottom: var(--espacio-md);
+}
+
+.info-card__action {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   SECCIÓN DESTACADA FINAL
+   Fondo Verde (#83C880) | 1 tarjeta principal a la izquierda + 4 tarjetas pequeñas (2x2)
+   ========================================================================== */
+.featured-section {
+  padding: var(--espacio-xl) 0;
+  background-color: var(--color-terciario); /* Fondo verde del wireframe */
+}
+
+.featured-layout {
+  display: grid;
+  grid-template-columns: 2fr 3fr; /* 2 columnas izquierda, 3 columnas derecha */
+  gap: var(--espacio-md);
+}
+
+/* Tarjeta Principal Izquierda (Rectángulo grande gris) */
+.featured-card-main {
+  background-color: var(--color-gris-caja);
+  border-radius: var(--radio-borde-sm);
+  overflow: hidden;
+  box-shadow: 0 4px 12px var(--color-gris-caja);
+  display: flex;
+  flex-direction: column;
+}
+
+.featured-card-main__image-container {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.featured-card-main__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-card-main__body {
+  padding: var(--espacio-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.featured-card-main__title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #173814;
+  margin-bottom: var(--espacio-xs);
+}
+
+.featured-card-main__description {
+  font-size: var(--tipo-pequeño);
+  color: #333;
+}
+
+/* Sub-grilla Derecha (4 tarjetas cuadradas 2 arriba y 2 abajo) */
+.featured-grid-secondary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: var(--espacio-md);
+}
+
+.featured-card-secondary {
+  background-color: #d8d8d5;
+  border-radius: var(--radio-borde-sm);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1 / 1;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.featured-card-secondary__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-card-secondary__caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0,0.7);
+  color: var(--color-blanco);
+  padding: var(--espacio-xs);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ==========================================================================
+   FOOTER (Organismo)
+   Fondo Naranja (#D27D2D) | Ocupa 6 columnas completas
+   ========================================================================== */
+.footer {
+  background-color: var(--color-secundario); /* Naranja del Wireframe */
+  color: var(--color-blanco);
+  padding: var(--espacio-xl) 0 var(--espacio-md) 0;
+  margin-top: auto;
+  min-height: 200px;
+}
+
+.footer__inner {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--espacio-lg);
+  margin-bottom: var(--espacio-lg);
+}
+
+.footer__brand-title {
+  font-size: 1.2rem;
+  font-weight: 900;
+  margin-bottom: var(--espacio-xs);
+}
+
+.footer__brand-text {
+  font-size: var(--tipo-pequeño);
+  opacity: 0.95;
+}
+
+.footer__heading {
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: var(--espacio-xs);
+}
+
+.footer__list {
+  list-style: none;
+}
+
+.footer__list-item {
+  margin-bottom: 4px;
+}
+
+.footer__link {
+  color: var(--color-blanco);
+  text-decoration: none;
+  font-size: var(--tipo-pequeño);
+  opacity: 0.9;
+}
+
+.footer__link:hover {
+  text-decoration: underline;
+}
+
+.footer__social {
+  display: flex;
+  gap: var(--espacio-xs);
+  margin-top: var(--espacio-xs);
+}
+
+.footer__social-icon {
+  width: 32px;
+  height: 32px;
+  background-color: rgba(255, 255, 255, 0.25);
+  color: var(--color-blanco);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.footer__bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  padding-top: var(--espacio-sm);
+  text-align: center;
+  font-size: var(--tipo-pequeño);
+  opacity: 0.9;
+}
+
+/* ==========================================================================
+   MODO VISUALIZADOR DE ESTRUCTURA (WIREFRAME OVERLAY)
+   Permite al usuario ver las líneas de bloque y etiquetas de estructura
+   ========================================================================== */
+body.show-wireframe header,
+body.show-wireframe section,
+body.show-wireframe footer,
+body.show-wireframe article,
+body.show-wireframe div.container {
+  outline: 2px dashed #e63946 !important;
+  position: relative;
+}
+
+body.show-wireframe section::before {
+  content: attr(class);
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  background: #e63946;
+  color: var(--color-blanco);
+  font-size: 10px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 3px;
+  z-index: 100;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  :root {
+    --tipo-display: 1.5rem;
+  }
+
+  .header__inner {
+    flex-direction: column;
+    gap: var(--espacio-xs);
+  }
+
+  .header__nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .carousel__track {
+    grid-template-columns: 1fr;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .featured-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .footer__inner {
+    grid-template-columns: 1fr;
+  }
+}
